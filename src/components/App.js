@@ -9,9 +9,11 @@ const App = () => {
   const [notes, setNotes] = useState([]);
 
   useEffect(() => {
-    Axios.get("http://localhost:3001/getNotes").then((response) => {
-      setNotes(response.data);
-    });
+    Axios.get("https://stickynote-server.onrender.com/getNotes").then(
+      (response) => {
+        setNotes(response.data);
+      }
+    );
   }, []);
 
   const addNote = (newNote) => {
@@ -26,7 +28,7 @@ const App = () => {
   const updateNote = (id) => {
     const updatedContent = prompt("enter your new content");
 
-    Axios.put("http://localhost:3001/updateNote", {
+    Axios.put("https://stickynote-server.onrender.com/updateNote", {
       updatedContent: updatedContent,
       id: id,
     }).then(() => {
@@ -41,7 +43,9 @@ const App = () => {
   };
 
   const deleteNote = (id) => {
-    Axios.delete(`http://localhost:3001/deleteNote/${id}`).then(() => {
+    Axios.delete(
+      `https://stickynote-server.onrender.com/deleteNote/${id}`
+    ).then(() => {
       setNotes(
         notes.filter((val) => {
           return val._id !== id;
