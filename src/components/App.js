@@ -8,19 +8,18 @@ import Axios from "axios";
 const App = () => {
   const [notes, setNotes] = useState([]);
 
+  const url = "http://localhost:3001";
+  // "http://localhost:3001";
+  // "https://stickynote-server.onrender.com"
+
   useEffect(() => {
-    Axios.get("https://stickynote-server.onrender.com/getNotes").then(
-      (response) => {
-        setNotes(response.data);
-      }
-    );
+    Axios.get(`${url}/notes`).then((response) => {
+      setNotes(response.data);
+    });
   }, []);
 
   const addNote = (newNote) => {
-    Axios.post(
-      "https://stickynote-server.onrender.com/createNote",
-      newNote
-    ).then((response) => {
+    Axios.post(`${url}/notes/create`, newNote).then((response) => {
       setNotes([...notes, newNote]);
     });
   };
@@ -28,7 +27,7 @@ const App = () => {
   const updateNote = (id) => {
     const updatedContent = prompt("enter your new content");
 
-    Axios.put("https://stickynote-server.onrender.com/updateNote", {
+    Axios.put(`${url}/notes/update`, {
       updatedContent: updatedContent,
       id: id,
     }).then(() => {
@@ -43,9 +42,7 @@ const App = () => {
   };
 
   const deleteNote = (id) => {
-    Axios.delete(
-      `https://stickynote-server.onrender.com/deleteNote/${id}`
-    ).then(() => {
+    Axios.delete(`${url}/notes/delete/${id}`).then(() => {
       setNotes(
         notes.filter((val) => {
           return val._id !== id;
