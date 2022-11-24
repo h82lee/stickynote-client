@@ -8,9 +8,7 @@ import Axios from "axios";
 const App = () => {
   const [notes, setNotes] = useState([]);
 
-  const url = "http://localhost:3001";
-  // "http://localhost:3001";
-  // "https://stickynote-server.onrender.com"
+  const url = "https://stickynote-server.onrender.com";
 
   useEffect(() => {
     Axios.get(`${url}/notes`).then((response) => {
