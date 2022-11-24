@@ -14,7 +14,7 @@ const App = () => {
     Axios.get(`${url}/notes`).then((response) => {
       setNotes(response.data);
     });
-  }, []);
+  }, [notes]);
 
   const addNote = (newNote) => {
     Axios.post(`${url}/notes/create`, newNote).then((response) => {
