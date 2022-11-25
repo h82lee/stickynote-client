@@ -2,8 +2,8 @@ import React, { useState } from "react";
 
 function Creatingarea(props) {
   const [note, setNote] = useState({
-    title: "title value",
-    content: "content value",
+    title: "",
+    content: "",
   });
 
   function handleChange(event) {
